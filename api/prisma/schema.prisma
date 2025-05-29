@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql" // Cambia a "mysql" o "sqlite" si usas otro
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id        Int      @id @default(autoincrement())
+  name      String
+  value     Float
+  category  String
+  timestamp DateTime @default(now())
+  inStock   Boolean  @default(true)
+  supplier  String?
+
+  @@map("products")
+}
