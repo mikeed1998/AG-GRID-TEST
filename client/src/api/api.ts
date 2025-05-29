@@ -45,10 +45,12 @@ export interface GridData {
   value: number;
   category: string;
   timestamp: string;
+  inStock: boolean;
+  supplier?: string;
 }
 
 export const fetchGridData = async (): Promise<GridData[]> => {
   const response = await api.get('/data');
-  return response.data.items; // Asegúrate que tu backend devuelve { items: GridData[] }
+  return response.data.data; // Ajusta según la estructura real de tu respuesta
 };
 

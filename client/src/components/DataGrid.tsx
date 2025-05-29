@@ -73,7 +73,7 @@ export const DataGrid = () => {
     <div 
       className="ag-theme-alpine" 
       style={{
-        width: '100vw',
+        width: '95vw',
         height: '100vh'
       }}
     >

@@ -1,24 +1,25 @@
 import { DatabaseService } from './database.service';
 
 export class DataService {
-  constructor(private databaseService: DatabaseService) {}
+  constructor(private readonly databaseService: DatabaseService) {
+    if (!databaseService.getProducts) {
+      throw new Error('DatabaseService incompleto');
+    }
+  }
 
   async getData() {
-    const items = await this.databaseService.getProducts();
-    
-    return {
-      success: true,
-      message: "Datos recuperados exitosamente",
-      timestamp: new Date().toISOString(),
-      count: items.length,
-      items: items.map(item => ({
-        ...item,
-        timestamp: item.timestamp.toISOString()
-      }))
-    };
+    try {
+      const products = await this.databaseService.getProducts();
+      return {
+        success: true,
+        data: products
+      };
+    } catch (error) {
+      console.error('Error en DataService:', error);
+      throw new Error('Error al obtener productos');
+    }
   }
 }
-
 // // En tu data.service.ts
 // export class DataService {
 //   async getData() {

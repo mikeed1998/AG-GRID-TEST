@@ -1,15 +1,28 @@
-import fastify from 'fastify';
+import fastify, { FastifyInstance } from 'fastify';
 import fastifyCors from '@fastify/cors';
 import { configureContainer } from './container';
 import { registerMainRoutes } from './routes';
 import { registerDataRoutes } from './routes/data.route';
 import { DataService } from './services/data.service';
-import { DatabaseService } from './services/database.service'; // Añadir esta importación
 
-export const buildApp = () => {
-  const app = fastify({ logger: true });
+declare module 'fastify' {
+  interface FastifyInstance {
+    container: ReturnType<typeof configureContainer>;
+  }
+}
+
+export interface AppWithContainer {
+  app: FastifyInstance & {
+    container: ReturnType<typeof configureContainer>;
+  };
+  container: ReturnType<typeof configureContainer>;
+}
+
+export const buildApp = (): AppWithContainer => {
+  const app = fastify({ logger: true }) as FastifyInstance & {
+    container: ReturnType<typeof configureContainer>;
+  };
   
-  // Registrar CORS antes que las rutas
   app.register(fastifyCors, {
     origin: ['http://localhost:5173'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -17,22 +30,23 @@ export const buildApp = () => {
   });
 
   const container = configureContainer();
+  
+  // Verifica la resolución de dependencias
+  try {
+    const testService = container.resolve('dataService');
+    console.log('✅ Dependencias resueltas correctamente');
+  } catch (err) {
+    console.error('❌ Error en DI:', err);
+    throw err;
+  }
+
   const dataService = container.resolve<DataService>('dataService');
-
-  // Añadir container a la instancia de Fastify para acceso posterior
-  (app as any).container = container;
-
+  app.decorate('container', container);
+  
   registerMainRoutes(app);
   registerDataRoutes(app, dataService);
 
   return { app, container };
 };
-
-// Exportar tipos para uso en server.ts
-export interface AppWithContainer extends ReturnType<typeof buildApp> {
-  app: fastify.FastifyInstance & {
-    container: ReturnType<typeof configureContainer>;
-  };
-}
 
 export const app = buildApp().app;
