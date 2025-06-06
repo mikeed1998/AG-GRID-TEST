@@ -17,7 +17,7 @@ App for testing Excel templates.
 ```bash
 .
 .
-├── backend/        # Fastify + Prisma backend
+├── api/        # Fastify + Prisma backend
 │   ├── prisma/     # Database schema and migrations
 │   │   └── migrations/
 │   └── src/        # Backend source code
@@ -26,7 +26,7 @@ App for testing Excel templates.
 │       ├── routes/     # API route definitions
 │       └── services/   # Business logic services
 │
-├── frontend/       # ReactJS frontend
+├── client/       # ReactJS frontend
 │   ├── public/     # Static assets
 │   └── src/        # Frontend source code
 │       ├── api/    # API client configuration
