@@ -1,0 +1,68 @@
+.ag-theme-custom {
+  --ag-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --ag-font-size: 14px;
+  --ag-border-color: #e2e8f0;
+  --ag-secondary-border-color: #e2e8f0;
+  --ag-row-border-width: 0px;
+  --ag-header-background-color: transparent;
+  --ag-odd-row-background-color: transparent;
+  --ag-background-color: transparent;
+  --ag-foreground-color: #334155;
+  --ag-header-foreground-color: #64748b;
+  --ag-borders: none;
+  --ag-border-radius: 0;
+  --ag-grid-border: none;
+  --ag-row-hover-color: #f1f5f9;
+  --ag-cell-horizontal-border: none;
+}
+
+.ag-theme-custom .ag-root-wrapper {
+  border: none;
+  box-shadow: none;
+}
+
+.ag-theme-custom .ag-header {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.ag-theme-custom .ag-header-cell {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.ag-theme-custom .ag-cell {
+  padding-left: 8px;
+  padding-right: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.simple-header {
+  font-weight: 500;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 13px;
+}
+
+.simple-cell {
+  color: #334155;
+  font-weight: 400;
+}
+
+.numeric-cell {
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 500;
+}
+
+.ag-theme-custom .ag-paging-panel {
+  border-top: 1px solid #e2e8f0;
+  padding: 12px 0;
+  color: #64748b;
+}
+
+/* Asegurar que ocupe todo el ancho */
+.ag-theme-custom .ag-header-viewport,
+.ag-theme-custom .ag-body-viewport {
+  width: 100% !important;
+}

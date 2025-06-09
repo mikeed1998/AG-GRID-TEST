@@ -1,0 +1,44 @@
+.ag-theme-custom {
+  --ag-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --ag-font-size: 14px;
+  --ag-border-color: #e2e8f0;
+  --ag-secondary-border-color: #e2e8f0;
+  --ag-row-border-width: 1px;
+  --ag-header-background-color: transparent;
+  --ag-odd-row-background-color: transparent;
+  --ag-background-color: transparent;
+  --ag-foreground-color: #334155;
+  --ag-borders: solid;
+  --ag-border-radius: 0;
+  --ag-grid-border: none;
+  --ag-cell-horizontal-border: solid #e2e8f0;
+}
+
+.ag-theme-custom .ag-root-wrapper {
+  border: none;
+}
+
+.header-cell {
+  font-weight: 500;
+  color: #64748b;
+}
+
+.data-cell {
+  text-align: center;
+  color: #334155;
+}
+
+.ag-theme-custom .ag-cell {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+}
+
+.ag-theme-custom .ag-row {
+  border-bottom: 1px solid #e2e8f0;
+  background-color: white;
+}
+
+.ag-theme-custom .ag-row-odd {
+  background-color: #f8fafc;
+}
