@@ -1,42 +1,33 @@
-.ag-theme-custom {
-  --ag-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  --ag-font-size: 14px;
-  --ag-border-color: #e2e8f0;
-  --ag-secondary-border-color: #e2e8f0;
-  --ag-row-border-width: 1px;
-  --ag-header-background-color: transparent;
-  --ag-odd-row-background-color: transparent;
-  --ag-background-color: transparent;
-  --ag-foreground-color: #334155;
-  --ag-borders: solid;
-  --ag-border-radius: 0;
-  --ag-grid-border: none;
-  --ag-cell-horizontal-border: solid #e2e8f0;
-}
-
-.ag-theme-custom .ag-root-wrapper {
-  border: none;
-}
-
-.header-cell {
+/* PRIMERA COLUMNA VERTICAL (120px) */
+.first-vertical-column {
+  width: 200px !important;
+  /* min-width: 120px !important; */
+  /* max-width: 120px !important; */
   font-weight: 500;
-  color: #64748b;
+  background-color: #f8fafc;
 }
 
-.data-cell {
+/* COLUMNAS DE DATOS (200px) */
+.data-column {
+  width: 200px !important;
+  min-width: 200px !important;
+  max-width: 200px !important;
   text-align: center;
-  color: #334155;
 }
 
+/* Estilos generales para evitar desbordamiento */
 .ag-theme-custom .ag-cell {
   display: flex;
   align-items: center;
   padding: 8px 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
+/* Estilo para filas pares/impares */
 .ag-theme-custom .ag-row {
   border-bottom: 1px solid #e2e8f0;
-  background-color: white;
 }
 
 .ag-theme-custom .ag-row-odd {

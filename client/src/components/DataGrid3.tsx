@@ -20,62 +20,61 @@ export const DataGrid3 = () => {
     const currentDate = new Date().toLocaleDateString();
     
     return [
-      {
-        field: 'FECHA',
-        ...Object.fromEntries(data.map((_, index) => [`col${index}`, currentDate]))
-      },
-      {
-        field: 'ID',
-        ...Object.fromEntries(data.map((item, index) => [`col${index}`, item.id || index + 1]))
-      },
-      {
-        field: 'NOMBRE',
-        ...Object.fromEntries(data.map((item, index) => [`col${index}`, item.name]))
-      },
-      {
-        field: 'VALOR',
-        ...Object.fromEntries(data.map((item, index) => [`col${index}`, `$${item.value.toFixed(2)}`]))
-      },
-      {
-        field: 'CATEGORIA',
-        ...Object.fromEntries(data.map((item, index) => [`col${index}`, item.category]))
-      },
+        {
+            field: 'FECHA',
+            ...Object.fromEntries(data.map((_, index) => [`col${index}`, currentDate]))
+        },
+        {
+            field: 'ID',
+            ...Object.fromEntries(data.map((item, index) => [`col${index}`, item.id || index + 1]))
+        },
+        {
+            field: 'NOMBRE',
+            ...Object.fromEntries(data.map((item, index) => [`col${index}`, item.name]))
+        },
+        {
+            field: 'VALOR',
+            ...Object.fromEntries(data.map((item, index) => [`col${index}`, `$${item.value.toFixed(2)}`]))
+        },
+        {
+            field: 'CATEGORIA',
+            ...Object.fromEntries(data.map((item, index) => [`col${index}`, item.category]))
+        }
     ];
-  };
+    };
 
   const loadData = useCallback(async () => {
-    try {
-      const data = await fetchGridData();
-      const transformedData = transformData(data);
-      setRowData(transformedData);
-      
-      // Generar definiciones de columnas basadas en los datos recibidos
-      const newColumnDefs = [
-        { 
-          field: 'field', 
-          headerName: '',
-          pinned: 'left',
-          width: 200,
-          cellClass: 'header-cell',
-          suppressMovable: true,
-          lockPosition: true
-        },
-        ...data.map((_, index) => ({
-          field: `col${index}`,
-          width: 180,
-          cellClass: 'data-cell',
-          suppressMovable: true
-        }))
-      ];
-      
-      setColumnDefs(newColumnDefs);
-    } catch (err) {
-      setError('Error al cargar los datos');
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+  try {
+    const data = await fetchGridData();
+    const transformedData = transformData(data);
+    setRowData(transformedData);
+    
+    const newColumnDefs = [
+      { 
+        field: 'field', 
+        headerName: '',
+        pinned: 'left',
+        width: 200,     
+        cellClass: 'first-vertical-column',
+        suppressMovable: true,
+        lockPosition: true
+      },
+      ...data.map((_, index) => ({
+        field: `col${index}`, 
+        width: 300,        
+        cellClass: 'data-column',
+        suppressMovable: true
+      }))
+    ];
+    
+    setColumnDefs(newColumnDefs);
+  } catch (err) {
+    setError('Error al cargar los datos');
+    console.error(err);
+  } finally {
+    setLoading(false);
+  }
+}, []);
 
   useEffect(() => {
     loadData();
@@ -96,7 +95,6 @@ export const DataGrid3 = () => {
           resizable: true,
           sortable: false,
           filter: false,
-          suppressMenu: true
         }}
         getRowHeight={() => 60}
       />
