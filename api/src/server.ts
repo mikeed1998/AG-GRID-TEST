@@ -9,10 +9,10 @@ async function testDatabaseConnection() {
   const prisma = new PrismaClient();
   try {
     const products = await prisma.product.findMany();
-    console.log('✅ Test DB connection - Products found:', products.length);
+    console.log('Test DB connection - Products found:', products.length);
     return true;
   } catch (error) {
-    console.error('❌ Database connection failed:', error);
+    console.error('Database connection failed:', error);
     return false;
   } finally {
     await prisma.$disconnect();
@@ -25,10 +25,10 @@ function testDIContainer(container: ReturnType<typeof buildApp>['container']) {
     const dbService = container.resolve<DatabaseService>('databaseService');
     const dataService = container.resolve<DataService>('dataService');
     
-    console.log('✅ DI Test: Services resolved correctly');
+    console.log('DI Test: Services resolved correctly');
     return true;
   } catch (error) {
-    console.error('❌ DI Test failed:', error);
+    console.error('DI Test failed:', error);
     return false;
   }
 }
