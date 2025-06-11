@@ -20,7 +20,7 @@ export class DataService {
     }
   }
 }
-// // En tu data.service.ts
+
 // export class DataService {
 //   async getData() {
 //     const items = [
