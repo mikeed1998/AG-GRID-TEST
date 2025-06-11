@@ -51,6 +51,6 @@ export interface GridData {
 
 export const fetchGridData = async (): Promise<GridData[]> => {
   const response = await api.get('/data');
-  return response.data.data; // Ajusta según la estructura real de tu respuesta
+  return response.data.data; 
 };
 
